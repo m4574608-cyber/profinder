@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<meta name="description" content="PROFINDER — поиск проверяемых специалистов и услуг по всей России.">
+<title>PROFINDER — Найти специалиста</title>
+<style>
+:root{--ink:#111827;--muted:#667085;--blue:#356DFF;--blue2:#2457dc;--line:#e8ebf1;--soft:#f5f7fb;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}a{color:inherit;text-decoration:none}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+header{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;background:#fff}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}.logo{font-size:23px;font-weight:850;letter-spacing:-1.2px}.logo span{color:var(--blue)}.links{display:flex;gap:28px;color:#505b6e;font-size:14px}.navright{display:flex;align-items:center;gap:12px}.city{border:0;background:transparent;color:#465166;font-size:14px;cursor:pointer}.login{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 16px;font-weight:650;cursor:pointer}
+.hero{background:linear-gradient(125deg,#101827 0%,#172844 65%,#1c3768 100%);color:#fff;padding:78px 0 72px;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;width:440px;height:440px;border:1px solid #ffffff18;border-radius:50%;right:-110px;top:-180px;box-shadow:0 0 0 55px #ffffff08,0 0 0 110px #ffffff05}.hero-inner{position:relative;z-index:1;max-width:780px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#b8cbff;background:#ffffff12;border:1px solid #ffffff20;border-radius:30px;padding:8px 12px;font-size:12px;font-weight:650;letter-spacing:.2px}.dot{width:7px;height:7px;background:#68e0b2;border-radius:50%}h1{font-size:clamp(38px,6vw,64px);line-height:1.04;letter-spacing:-2.7px;margin:23px 0 18px;max-width:760px}.hero p{font-size:17px;line-height:1.65;color:#c4ccda;max-width:590px;margin:0 0 30px}.search{background:#fff;padding:8px;border-radius:16px;display:flex;gap:8px;max-width:760px;box-shadow:0 18px 50px #0003}.field{display:flex;align-items:center;gap:10px;flex:1;padding:0 13px;min-width:0}.field svg{width:19px;height:19px;stroke:#7c8798;flex:none}.field input{width:100%;border:0;outline:0;padding:13px 0;color:var(--ink);min-width:0;font-size:14px}.search button,.primary{border:0;background:var(--blue);color:#fff;border-radius:11px;padding:0 23px;font-weight:700;cursor:pointer;transition:.2s}.search button:hover,.primary:hover{background:var(--blue2)}.hero-note{font-size:12px!important;color:#aebbd0!important;margin:14px 0 0!important}
+.stats{display:flex;gap:38px;margin-top:36px}.stat strong{display:block;font-size:20px}.stat span{font-size:12px;color:#aebbd0}
+section{padding:66px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}.kicker{font-size:12px;color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:1.2px}.section-head h2{font-size:30px;letter-spacing:-1px;margin:8px 0 0}.section-head p{color:var(--muted);font-size:14px;margin:8px 0 0}.all{color:var(--blue);font-weight:700;font-size:13px;white-space:nowrap}
+.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.cat{border:1px solid var(--line);border-radius:17px;padding:20px;transition:.2s;background:#fff}.cat:hover{border-color:#b8caff;transform:translateY(-2px);box-shadow:0 12px 30px #1728440c}.cat-icon{width:44px;height:44px;border-radius:13px;background:#eef3ff;display:grid;place-items:center;font-size:22px;margin-bottom:17px}.cat strong{display:block;font-size:15px}.cat small{display:block;color:var(--muted);margin-top:6px;font-size:12px}
+.how{background:var(--soft)}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.step{background:#fff;border:1px solid var(--line);border-radius:17px;padding:23px}.num{font-size:12px;color:var(--blue);font-weight:800}.step h3{font-size:17px;margin:13px 0 8px}.step p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
+.cta{background:#101827;color:#fff;border-radius:22px;padding:34px;display:flex;justify-content:space-between;align-items:center;gap:24px}.cta h2{margin:0 0 8px;font-size:25px;letter-spacing:-.7px}.cta p{margin:0;color:#b7c0d0;font-size:14px}.cta .primary{padding:14px 19px;white-space:nowrap}
+footer{padding:30px 0;border-top:1px solid var(--line);color:#7a8495;font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px;align-items:center}.foot strong{color:var(--ink);font-size:16px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:#111827;color:#fff;padding:13px 17px;border-radius:12px;font-size:13px;box-shadow:0 10px 30px #0003;transition:.25s;z-index:5;max-width:calc(100% - 32px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){.wrap{width:min(100% - 32px,560px)}header{height:66px}.links{display:none}.city{font-size:12px}.login{padding:9px 11px;font-size:12px}.logo{font-size:21px}.hero{padding:58px 0 48px}h1{letter-spacing:-1.8px}.hero p{font-size:15px}.search{flex-direction:column;padding:10px;border-radius:14px}.field{padding:0 7px}.search button{height:48px}.stats{gap:22px}.stat strong{font-size:18px}section{padding:48px 0}.section-head h2{font-size:25px}.categories{grid-template-columns:repeat(2,1fr);gap:10px}.cat{padding:16px}.steps{grid-template-columns:1fr}.cta{padding:25px;display:block}.cta .primary{margin-top:20px;width:100%;height:48px}.foot{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap nav">
+  <a class="logo" href="#">PRO<span>FINDER</span></a>
+  <nav class="links"><a href="#categories">Категории</a><a href="#how">Как это работает</a><a href="#masters">Специалистам</a></nav>
+  <div class="navright"><button class="city" onclick="notify('Выбор города добавим на следующем этапе')">📍 Россия</button><button class="login" onclick="notify('Личный кабинет подключим на следующем этапе')">Войти</button></div>
+ </div>
+</header>
+<main>
+ <div class="hero">
+  <div class="wrap">
+   <div class="hero-inner">
+    <div class="eyebrow"><span class="dot"></span> СЕРВИС ПОИСКА СПЕЦИАЛИСТОВ</div>
+    <h1>Найдите специалиста<br>для любой задачи</h1>
+    <p>Удобный поиск мастеров и специалистов в вашем городе. Выберите услугу, опишите задачу и найдите подходящего исполнителя.</p>
+    <form class="search" id="searchForm">
+     <div class="field">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+      <input id="service" placeholder="Например, сантехник или фотограф" aria-label="Какая услуга нужна">
+     </div>
+     <div class="field" style="max-width:190px;border-left:1px solid #e8ebf1">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+      <input id="location" placeholder="Ваш город" aria-label="Ваш город">
+     </div>
+     <button type="submit">Найти</button>
+    </form>
+    <p class="hero-note">Поиск по России · Бесплатное размещение на старте</p>
+    <div class="stats"><div class="stat"><strong>По всей России</strong><span>География сервиса</span></div><div class="stat"><strong>Удобно</strong><span>На телефоне и компьютере</span></div><div class="stat"><strong>Просто</strong><span>Без сложных форм</span></div></div>
+   </div>
+  </div>
+ </div>
+ <section id="categories">
+  <div class="wrap">
+   <div class="section-head"><div><div class="kicker">Каталог услуг</div><h2>Что вам нужно?</h2><p>Выберите категорию, чтобы начать поиск.</p></div><a class="all" href="#categories">Все категории →</a></div>
+   <div class="categories">
+    <a class="cat" href="#" onclick="pick('Ремонт и строительство');return false"><div class="cat-icon">🛠️</div><strong>Ремонт и строительство</strong><small>Мастера, отделка, монтаж</small></a>
+    <a class="cat" href="#" onclick="pick('Электрики и сантехники');return false"><div class="cat-icon">🔌</div><strong>Электрика и сантехника</strong><small>Установка и ремонт</small></a>
+    <a class="cat" href="#" onclick="pick('Красота и уход');return false"><div class="cat-icon">✂️</div><strong>Красота и уход</strong><small>Парикмахеры, мастера</small></a>
+    <a class="cat" href="#" onclick="pick('Фото и видео');return false"><div class="cat-icon">📸</div><strong>Фото и видео</strong><small>Съёмка и монтаж</small></a>
+    <a class="cat" href="#" onclick="pick('Обучение');return false"><div class="cat-icon">📚</div><strong>Обучение</strong><small>Репетиторы и наставники</small></a>
+    <a class="cat" href="#" onclick="pick('Автоуслуги');return false"><div class="cat-icon">🚘</div><strong>Автоуслуги</strong><small>Ремонт и обслуживание</small></a>
+    <a class="cat" href="#" onclick="pick('Уборка');return false"><div class="cat-icon">🧹</div><strong>Уборка и помощь по дому</strong><small>Клининг и бытовые задачи</small></a>
+    <a class="cat" href="#" onclick="pick('Другое');return false"><div class="cat-icon">＋</div><strong>Другие услуги</strong><small>Найдём нужную категорию</small></a>
+   </div>
+  </div>
+ </section>
+ <section class="how" id="how">
+  <div class="wrap">
+   <div class="section-head"><div><div class="kicker">Понятный процесс</div><h2>Всего три шага</h2><p>Ищем исполнителя без лишней сложности.</p></div></div>
+   <div class="steps">
+    <div class="step"><div class="num">ШАГ 01</div><h3>Опишите задачу</h3><p>Укажите нужную услугу и город, где требуется специалист.</p></div>
+    <div class="step"><div class="num">ШАГ 02</div><h3>Выберите исполнителя</h3><p>Сравните информацию о специалистах и условия работы.</p></div>
+    <div class="step"><div class="num">ШАГ 03</div><h3>Обсудите детали</h3><p>Свяжитесь с исполнителем и договоритесь о заказе напрямую.</p></div>
+   </div>
+  </div>
+ </section>
+ <section id="masters">
+  <div class="wrap">
+   <div class="cta"><div><h2>Вы специалист?</h2><p>Расскажите о своих услугах и получайте обращения от клиентов.</p></div><button class="primary" onclick="notify('Форма регистрации специалистов появится на следующем этапе')">Стать специалистом</button></div>
+  </div>
+ </section>
+</main>
+<footer><div class="wrap foot"><div><strong>PROFINDER</strong><div style="margin-top:6px">Найти специалиста. Решить задачу.</div></div><div>Демонстрационная версия · 2026</div><div>Информация о специалистах будет проверяться после запуска.</div></div></footer>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const toast=document.getElementById('toast');let toastTimer;
+function notify(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2600)}
+function pick(value){document.getElementById('service').value=value;document.getElementById('service').focus();window.scrollTo({top:0,behavior:'smooth'})}
+document.getElementById('searchForm').addEventListener('submit',function(e){e.preventDefault();const s=document.getElementById('service').value.trim();const c=document.getElementById('location').value.trim();if(!s&&!c){notify('Введите услугу или город для поиска');return}notify('Каталог специалистов подключим на следующем этапе')});
+</script>
+</body>
+</html>
